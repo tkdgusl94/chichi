@@ -4,17 +4,17 @@
     <item
         android:id="@+id/tab1"
         android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_email"
+        android:icon="@android:drawable/sym_action_email"
         android:title="이메일"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/tab3"
+        android:id="@+id/tab2"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_gallery"
         android:title="사진"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/tab2"
+        android:id="@+id/tab3"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="정보"

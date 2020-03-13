@@ -1,5 +1,6 @@
 package com.example.chichi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -12,21 +13,44 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Fragment fragment1;
-    Fragment fragment2;
-    Fragment fragment3;
+    MessageFragment messageFragment;
+    InfoFragment infoFragment;
+    PictureFragment pictureFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragment1 = new Fragment();
-        fragment2 = new Fragment();
-        fragment3 = new Fragment();
+        messageFragment = new MessageFragment();
+        infoFragment = new InfoFragment();
+        pictureFragment = new PictureFragment();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.tab1:
+                                Toast.makeText(getApplicationContext(), "첫번째 탭 선택", Toast.LENGTH_SHORT).show();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
+                                return true;
+                            case R.id.tab2:
+                                Toast.makeText(getApplicationContext(), "두번째 탭 선택", Toast.LENGTH_SHORT).show();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.container, infoFragment).commit();
+                                return true;
+                            case R.id.tab3:
+                                Toast.makeText(getApplicationContext(), "세번째 탭 선택", Toast.LENGTH_SHORT).show();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.container, pictureFragment).commit();
+                                return true;
+
+                        }
+                        return false;
+                    }
+                }
+        );
     }
 
     @Override
