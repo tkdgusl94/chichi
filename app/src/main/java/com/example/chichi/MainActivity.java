@@ -26,31 +26,30 @@ public class MainActivity extends AppCompatActivity {
         infoFragment = new InfoFragment();
         pictureFragment = new PictureFragment();
 
+        // 첫 화면 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
-        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
-        bottomNavigation.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.tab1:
-                                Toast.makeText(getApplicationContext(), "첫번째 탭 선택", Toast.LENGTH_SHORT).show();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
-                                return true;
-                            case R.id.tab2:
-                                Toast.makeText(getApplicationContext(), "두번째 탭 선택", Toast.LENGTH_SHORT).show();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, infoFragment).commit();
-                                return true;
-                            case R.id.tab3:
-                                Toast.makeText(getApplicationContext(), "세번째 탭 선택", Toast.LENGTH_SHORT).show();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, pictureFragment).commit();
-                                return true;
 
-                        }
-                        return false;
-                    }
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.tab1:
+                        Toast.makeText(getApplicationContext(), "첫번째 탭 선택", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
+                        return true;
+                    case R.id.tab2:
+                        Toast.makeText(getApplicationContext(), "두번째 탭 선택", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, infoFragment).commit();
+                        return true;
+                    case R.id.tab3:
+                        Toast.makeText(getApplicationContext(), "세번째 탭 선택", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, pictureFragment).commit();
+                        return true;
                 }
-        );
+                return false;
+            }
+        });
     }
 
     @Override
