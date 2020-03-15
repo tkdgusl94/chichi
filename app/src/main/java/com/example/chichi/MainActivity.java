@@ -13,11 +13,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
-    MessageFragment messageFragment;
-    InfoFragment infoFragment;
-    PictureFragment pictureFragment;
+    private MessageFragment messageFragment;
+    private InfoFragment infoFragment;
+    private PictureFragment pictureFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,15 @@ public class MainActivity extends AppCompatActivity{
         infoFragment = new InfoFragment();
         pictureFragment = new PictureFragment();
 
+        setBottomNavigation();
+    }
+
+    private void setBottomNavigation() {
         // 첫 화면 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
 
-        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
-        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu); // 액션바 설정
         return true;
     }
 

@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class MessageFragment extends Fragment {
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

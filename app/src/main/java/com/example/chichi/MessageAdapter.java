@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
 
-    ArrayList<Message> items = new ArrayList<>();
+    private ArrayList<Message> items = new ArrayList<>();
 
     @NonNull
     @Override
@@ -27,6 +27,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return new ViewHolder(itemView);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message item = items.get(position);
