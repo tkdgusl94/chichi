@@ -22,25 +22,19 @@ public class SmsReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i(TAG, "onReceive: 메소드 호출됨");
         Bundle bundle = intent.getExtras();
         SmsMessage[] messages = parseSmsMessage(bundle);
 
         if (messages.length > 0) {
             String sender = messages[0].getOriginatingAddress();
-            Log.i(TAG, "A: " + sender);
-
             String contents = messages[0].getMessageBody();
-            Log.i(TAG, "B: " + contents);
-
             Date receiveDate = new Date(messages[0].getTimestampMillis());
-            Log.i(TAG, "C: " + receiveDate);
 
             sendToActivity(context, sender, contents, receiveDate);
-
         }
     }
 
+    // 메시지 받으면 MainActivity로 전달
     private void sendToActivity(Context context, String sender, String contents, Date receiveDate) {
         Intent intent = new Intent(context, MainActivity.class);
 

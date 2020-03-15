@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void setViewPager() {
         viewPager = findViewById(R.id.view_pager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -50,13 +51,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        bottomNavigationView.getMenu().findItem(R.id.tab1).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.tab_message).setChecked(true);
                         break;
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.tab2).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.tab_photo).setChecked(true);
                         break;
                     case 2:
-                        bottomNavigationView.getMenu().findItem(R.id.tab3).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.tab_info).setChecked(true);
                         break;
                 }
             }
@@ -76,9 +77,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int curId = item.getItemId();
-
-        switch (curId) {
+        switch (item.getItemId()) {
             case R.id.menu_star:
                 Toast.makeText(this, "별 메뉴 선택", Toast.LENGTH_SHORT).show();
                 break;
@@ -95,13 +94,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.tab1:
+            case R.id.tab_message:
                 viewPager.setCurrentItem(0);
                 return true;
-            case R.id.tab2:
+            case R.id.tab_photo:
                 viewPager.setCurrentItem(1);
                 return true;
-            case R.id.tab3:
+            case R.id.tab_info:
                 viewPager.setCurrentItem(2);
                 return true;
         }

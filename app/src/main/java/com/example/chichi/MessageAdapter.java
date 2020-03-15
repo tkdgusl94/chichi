@@ -1,10 +1,12 @@
 package com.example.chichi;
 
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -12,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> implements OnMessageClickListener {
 
     private ArrayList<Message> items = new ArrayList<>();
+    private OnMessageClickListener listener;
 
     @NonNull
     @Override
@@ -24,7 +27,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         // 인플레이션을 통해 뷰 객체 만들기
         View itemView = inflater.inflate(R.layout.message_item, parent, false);
 
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -43,18 +46,43 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         items.add(item);
     }
 
+    public Message getItem(int position) {
+        return items.get(position);
+    }
+
+    @Override
+    public void onItemClick(ViewHolder holder, View view, int position) {
+        if (listener != null) {
+            listener.onItemClick(holder, view, position);
+        }
+    }
+
+    public void setOnItemClickListener(OnMessageClickListener listener) {
+        this.listener = listener;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView contentText;
-        TextView phoneText;
-        TextView timeText;
+        private TextView contentText;
+        private TextView phoneText;
+        private TextView timeText;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnMessageClickListener listener) {
             super(itemView);
 
             contentText = itemView.findViewById(R.id.contentText);
             phoneText = itemView.findViewById(R.id.phoneText);
             timeText = itemView.findViewById(R.id.timeText);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null) {
+                        listener.onItemClick(ViewHolder.this, view, position);
+                    }
+                }
+            });
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
