@@ -28,11 +28,6 @@ public class MessageFragment extends Fragment {
         adapter.addItem(new Message("사람1", "010-5188-2978"));
         adapter.addItem(new Message("사람1", "010-5188-2978"));
         adapter.addItem(new Message("사람1", "010-5188-2978"));
-        adapter.addItem(new Message("사람1", "010-5188-2978"));
-        adapter.addItem(new Message("사람1", "010-5188-2978"));
-        adapter.addItem(new Message("사람1", "010-5188-2978"));
-        adapter.addItem(new Message("사람1", "010-5188-2978"));
-        adapter.addItem(new Message("사람1", "010-5188-2978"));
 
         recyclerView.setAdapter(adapter);
 

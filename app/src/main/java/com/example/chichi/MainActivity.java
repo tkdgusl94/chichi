@@ -35,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab1:
-                        Toast.makeText(getApplicationContext(), "첫번째 탭 선택", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "첫번째", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
                         return true;
                     case R.id.tab2:
-                        Toast.makeText(getApplicationContext(), "두번째 탭 선택", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "두번째", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, infoFragment).commit();
                         return true;
                     case R.id.tab3:
-                        Toast.makeText(getApplicationContext(), "세번째 탭 선택", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "세번째", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, pictureFragment).commit();
                         return true;
                 }
