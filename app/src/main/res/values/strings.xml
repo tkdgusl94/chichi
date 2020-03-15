@@ -3,4 +3,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_star">star</string>
+    <string name="menu_test1">test1</string>
+    <string name="menu_test2">test2</string>
+    <string name="menu_message">메시지</string>
+    <string name="menu_photo">사진</string>
+    <string name="menu_info">정보</string>
+    <string name="message_item_content">Content</string>
+    <string name="message_item_phone">Phone</string>
+    <string name="main_button">버튼</string>
+    <string name="message_item_time">Time</string>
 </resources>

@@ -1,11 +1,13 @@
 package com.example.chichi;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -40,33 +42,25 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         items.add(item);
     }
 
-    public void setItems(ArrayList<Message> items) {
-        this.items = items;
-    }
-
-    public Message getItem(int position) {
-        return items.get(position);
-    }
-
-    public Message setItem(int position, Message item){
-        return items.set(position, item);
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nameText;
+        TextView contentText;
         TextView phoneText;
+        TextView timeText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nameText = itemView.findViewById(R.id.nameText);
+            contentText = itemView.findViewById(R.id.contentText);
             phoneText = itemView.findViewById(R.id.phoneText);
+            timeText = itemView.findViewById(R.id.timeText);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         public void setItem(Message item) {
-            nameText.setText(item.getName());
+            contentText.setText(item.getContent());
             phoneText.setText(item.getPhone());
+            timeText.setText(item.getTime());
         }
     }
 }

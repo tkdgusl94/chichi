@@ -10,8 +10,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pedro.library.AutoPermissions;
+import com.pedro.library.AutoPermissionsListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     MessageFragment messageFragment;
     InfoFragment infoFragment;
@@ -35,15 +37,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab1:
-                        Toast.makeText(getApplicationContext(), "첫번째", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, messageFragment).commit();
                         return true;
                     case R.id.tab2:
-                        Toast.makeText(getApplicationContext(), "두번째", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, infoFragment).commit();
                         return true;
                     case R.id.tab3:
-                        Toast.makeText(getApplicationContext(), "세번째", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, pictureFragment).commit();
                         return true;
                 }
@@ -63,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
         int curId = item.getItemId();
 
         switch (curId) {
-            case R.id.menu_refresh:
+            case R.id.menu_star:
                 Toast.makeText(this, "별 메뉴 선택", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.menu_search:
-                Toast.makeText(this, "작대기 메뉴 선택", Toast.LENGTH_SHORT).show();
+            case R.id.menu_test1:
+                Toast.makeText(this, "test1 메뉴 선택", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.menu_test2:
+                Toast.makeText(this, "test2 메뉴 선택", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

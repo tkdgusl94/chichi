@@ -1,24 +1,36 @@
 package com.example.chichi;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Message {
-    String name;
-    String phone;
+    private String content;
+    private String phone;
+    private LocalDateTime time;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPhone(String phone) {
+    public Message(String content, String phone, LocalDateTime time) {
+        this.content = content;
         this.phone = phone;
+        this.time = time;
     }
 
-    public Message(String name, String phone) {
-        this.name = name;
-        this.phone = phone;
+    public String getContent() {
+        return content;
     }
 
-    public String getName() {
-        return name;
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String getTime() {
+        if (LocalDate.now().isEqual(time.toLocalDate())) {
+            return time.format(DateTimeFormatter.ofPattern("HH:mm"));
+        }
+        return time.format(DateTimeFormatter.ofPattern("MM월 dd일"));
     }
 
     public String getPhone() {
