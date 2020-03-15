@@ -46,10 +46,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         items.add(item);
     }
 
-    public Message getItem(int position) {
+    public Message getItem(int position){
         return items.get(position);
     }
-
     @Override
     public void onItemClick(ViewHolder holder, View view, int position) {
         if (listener != null) {

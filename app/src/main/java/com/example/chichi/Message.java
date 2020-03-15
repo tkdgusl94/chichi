@@ -1,11 +1,9 @@
 package com.example.chichi;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +21,11 @@ public class Message {
 
     public String getContent() {
         return content;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String getDateTime() {
+        return time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss"));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

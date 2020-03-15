@@ -1,5 +1,6 @@
 package com.example.chichi;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -32,7 +33,6 @@ public class MessageFragment extends Fragment {
         return rootView;
     }
 
-
     private MessageAdapter initAdapter() {
         final MessageAdapter adapter = new MessageAdapter();
 
@@ -47,7 +47,14 @@ public class MessageFragment extends Fragment {
             @Override
             public void onItemClick(MessageAdapter.ViewHolder holder, View view, int position) {
                 Message item = adapter.getItem(position);
-                Toast.makeText(getContext(), "아이템 선택 : " + item.getContent(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), MessageDetailActivity.class);
+
+                intent.putExtra("phone", item.getPhone());
+                intent.putExtra("content", item.getContent());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    intent.putExtra("time", item.getDateTime());
+                }
+                startActivity(intent);
             }
         });
         return adapter;
