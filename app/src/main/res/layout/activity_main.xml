@@ -15,14 +15,17 @@
         app:itemIconTint="@color/design_default_color_on_secondary"
         app:itemTextColor="@color/design_default_color_on_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom" />
+        app:menu="@menu/menu_bottom" >
 
-    <FrameLayout
-        android:id="@+id/container"
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
