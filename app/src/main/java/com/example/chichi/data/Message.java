@@ -4,20 +4,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Message {
     private String content;
     private String phone;
     private LocalDateTime time;
-
-    public Message(String content, String phone, LocalDateTime time) {
-        this.content = content;
-        this.phone = phone;
-        this.time = time;
-    }
-
-    public String getDateTime() {
-        return time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss"));
-    }
 
     /**
      * DateTimeFormatter.ofPattern 함수를 쓰려면 최소 API 레벨이 26이다.
@@ -31,11 +26,7 @@ public class Message {
         return time.format(DateTimeFormatter.ofPattern("MM월 dd일"));
     }
 
-    public String getContent(){
-        return content;
-    }
-
-    public String getPhone(){
-        return phone;
+    public String getDateTime() {
+        return time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss"));
     }
 }

@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class MessageFragment extends Fragment {
 
@@ -46,14 +47,10 @@ public class MessageFragment extends Fragment {
     private MessageAdapter initAdapter() {
         final MessageAdapter adapter = new MessageAdapter();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String jsonString = JsonParser.getJsonString(getContext(), "Message.json");
-            ArrayList<Message> messages = jsonParsing(jsonString);
+        String jsonString = JsonParser.getJsonString(getContext(), "Message.json");
+        ArrayList<Message> messages = jsonParsing(jsonString);
 
-            for (Message message : messages) {
-                adapter.addItem(message);
-            }
-        }
+        for (Message message : messages) adapter.addItem(message);
 
         adapter.setOnItemClickListener(new OnMessageClickListener() {
             @Override
@@ -63,9 +60,8 @@ public class MessageFragment extends Fragment {
 
                 intent.putExtra("phone", item.getPhone());
                 intent.putExtra("content", item.getContent());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    intent.putExtra("time", item.getDateTime());
-                }
+                intent.putExtra("time", item.getDateTime());
+
                 startActivity(intent);
             }
         });
