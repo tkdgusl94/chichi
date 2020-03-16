@@ -47,7 +47,7 @@ public class StartActivity extends AppCompatActivity implements AutoPermissionsL
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
 

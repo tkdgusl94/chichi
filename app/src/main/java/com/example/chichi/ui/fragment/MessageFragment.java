@@ -47,7 +47,7 @@ public class MessageFragment extends Fragment {
         final MessageAdapter adapter = new MessageAdapter();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String jsonString = JsonParser.getJsonString(getContext());
+            String jsonString = JsonParser.getJsonString(getContext(), "Message.json");
             ArrayList<Message> messages = jsonParsing(jsonString);
 
             for (Message message : messages) {
@@ -87,10 +87,8 @@ public class MessageFragment extends Fragment {
                 String content = messageObject.getString("content");
                 String time = messageObject.getString("time");
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {//
-                    Message message = new Message(content, phone, LocalDateTime.parse(time));
-                    messages.add(message);
-                }
+                Message message = new Message(content, phone, LocalDateTime.parse(time));
+                messages.add(message);
             }
             return messages;
         } catch (JSONException e) {

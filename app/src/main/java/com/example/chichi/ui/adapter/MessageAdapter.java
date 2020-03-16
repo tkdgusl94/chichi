@@ -32,7 +32,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return new ViewHolder(itemView, this);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message item = items.get(position);
@@ -87,7 +86,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             });
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.O)//
         public void setItem(Message item) {
             contentText.setText(item.getContent());
             phoneText.setText(item.getPhone());

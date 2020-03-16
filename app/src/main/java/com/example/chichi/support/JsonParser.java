@@ -8,10 +8,10 @@ import java.nio.charset.StandardCharsets;
 
 public class JsonParser {
 
-    public static String getJsonString(Context context) {
+    public static String getJsonString(Context context, String fileName) {
         String json = "";
         try {
-            InputStream is = context.getResources().getAssets().open("Message.json");
+            InputStream is = context.getResources().getAssets().open(fileName);
             int fileSize = is.available();
 
             byte[] buffer = new byte[fileSize];
