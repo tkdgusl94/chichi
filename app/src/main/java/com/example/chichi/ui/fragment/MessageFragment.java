@@ -1,7 +1,6 @@
 package com.example.chichi.ui.fragment;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,7 +23,6 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class MessageFragment extends Fragment {
 
@@ -47,7 +45,7 @@ public class MessageFragment extends Fragment {
     private MessageAdapter initAdapter() {
         final MessageAdapter adapter = new MessageAdapter();
 
-        String jsonString = JsonParser.getJsonString(getContext(), "Message.json");
+        String jsonString = JsonParser.getJsonString(getActivity(), "Message.json");
         ArrayList<Message> messages = jsonParsing(jsonString);
 
         for (Message message : messages) adapter.addItem(message);
