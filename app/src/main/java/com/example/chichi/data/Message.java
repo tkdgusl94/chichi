@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import lombok.Getter;
-
-@Getter
 public class Message {
     private String content;
     private String phone;
