@@ -1,4 +1,4 @@
-package com.example.chichi.support;
+package com.example.chichi.other;
 
 import android.content.Context;
 

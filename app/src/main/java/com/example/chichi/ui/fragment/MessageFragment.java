@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.chichi.R;
 import com.example.chichi.data.Message;
-import com.example.chichi.support.JsonParser;
+import com.example.chichi.other.JsonParser;
 import com.example.chichi.ui.activity.MessageDetailActivity;
 import com.example.chichi.ui.adapter.MessageAdapter;
 
