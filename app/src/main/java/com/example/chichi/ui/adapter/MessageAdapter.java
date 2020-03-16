@@ -1,16 +1,18 @@
-package com.example.chichi;
+package com.example.chichi.ui.adapter;
 
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.chichi.data.Message;
+import com.example.chichi.ui.fragment.OnMessageClickListener;
+import com.example.chichi.R;
 
 import java.util.ArrayList;
 
@@ -61,7 +63,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         this.listener = listener;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView contentText;
         private TextView phoneText;
@@ -85,7 +87,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             });
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
+        @RequiresApi(api = Build.VERSION_CODES.O)//
         public void setItem(Message item) {
             contentText.setText(item.getContent());
             phoneText.setText(item.getPhone());

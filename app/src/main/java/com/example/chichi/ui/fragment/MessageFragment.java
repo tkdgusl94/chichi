@@ -1,4 +1,4 @@
-package com.example.chichi;
+package com.example.chichi.ui.fragment;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,13 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.chichi.R;
+import com.example.chichi.data.Message;
+import com.example.chichi.support.JsonParser;
+import com.example.chichi.ui.activity.MessageDetailActivity;
+import com.example.chichi.ui.adapter.MessageAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -44,7 +47,7 @@ public class MessageFragment extends Fragment {
         final MessageAdapter adapter = new MessageAdapter();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String jsonString = getJsonString();
+            String jsonString = JsonParser.getJsonString(getContext());
             ArrayList<Message> messages = jsonParsing(jsonString);
 
             for (Message message : messages) {
@@ -69,23 +72,6 @@ public class MessageFragment extends Fragment {
         return adapter;
     }
 
-    private String getJsonString() {
-        String json = "";
-        try {
-            InputStream is = getResources().getAssets().open("Message.json");
-            int fileSize = is.available();
-
-            byte[] buffer = new byte[fileSize];
-            is.read(buffer);
-            is.close();
-
-            json = new String(buffer, StandardCharsets.UTF_8);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        return json;
-    }
 
     private ArrayList<Message> jsonParsing(String json) {
         try {
@@ -101,7 +87,7 @@ public class MessageFragment extends Fragment {
                 String content = messageObject.getString("content");
                 String time = messageObject.getString("time");
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {//
                     Message message = new Message(content, phone, LocalDateTime.parse(time));
                     messages.add(message);
                 }

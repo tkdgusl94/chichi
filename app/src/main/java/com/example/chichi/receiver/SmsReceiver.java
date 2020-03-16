@@ -1,4 +1,4 @@
-package com.example.chichi;
+package com.example.chichi.receiver;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;

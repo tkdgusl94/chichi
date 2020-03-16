@@ -1,4 +1,4 @@
-package com.example.chichi;
+package com.example.chichi.data;
 
 import android.os.Build;
 
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import lombok.Builder;
 import lombok.Getter;
 
+@Getter
 public class Message {
     private String content;
     private String phone;

@@ -1,4 +1,4 @@
-package com.example.chichi;
+package com.example.chichi.ui.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 
+import com.example.chichi.R;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
-
-import java.util.Arrays;
 
 public class StartActivity extends AppCompatActivity implements AutoPermissionsListener {
 

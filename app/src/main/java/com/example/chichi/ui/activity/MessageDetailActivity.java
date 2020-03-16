@@ -1,10 +1,12 @@
-package com.example.chichi;
+package com.example.chichi.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.chichi.R;
 
 public class MessageDetailActivity extends AppCompatActivity {
 
