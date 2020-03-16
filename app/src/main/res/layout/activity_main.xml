@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#EFECEC"
-        app:itemIconTint="@color/design_default_color_on_secondary"
-        app:itemTextColor="@color/design_default_color_on_secondary"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom">
 

@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import lombok.Builder;
+import lombok.Getter;
+
 public class Message {
     private String content;
     private String phone;
@@ -17,10 +20,6 @@ public class Message {
         this.content = content;
         this.phone = phone;
         this.time = time;
-    }
-
-    public String getContent() {
-        return content;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -36,7 +35,11 @@ public class Message {
         return time.format(DateTimeFormatter.ofPattern("MM월 dd일"));
     }
 
-    public String getPhone() {
+    public String getContent(){
+        return content;
+    }
+
+    public String getPhone(){
         return phone;
     }
 }

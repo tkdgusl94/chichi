@@ -11,9 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class MessageFragment extends Fragment {
 
@@ -37,10 +44,12 @@ public class MessageFragment extends Fragment {
         final MessageAdapter adapter = new MessageAdapter();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            adapter.addItem(new Message("hello", "010-5188-2978", LocalDateTime.now()));
-            adapter.addItem(new Message("hello", "010-5188-2978", LocalDateTime.of(2020, 2, 22, 3, 20, 10)));
-            adapter.addItem(new Message("hi", "010-5188-2978", LocalDateTime.of(2020, 2, 22, 3, 20, 10)));
-            adapter.addItem(new Message("동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세", "010-5188-2978", LocalDateTime.of(2020, 2, 22, 3, 20, 10)));
+            String jsonString = getJsonString();
+            ArrayList<Message> messages = jsonParsing(jsonString);
+
+            for (Message message : messages) {
+                adapter.addItem(message);
+            }
         }
 
         adapter.setOnItemClickListener(new OnMessageClickListener() {
@@ -58,5 +67,49 @@ public class MessageFragment extends Fragment {
             }
         });
         return adapter;
+    }
+
+    private String getJsonString() {
+        String json = "";
+        try {
+            InputStream is = getResources().getAssets().open("Message.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
+    }
+
+    private ArrayList<Message> jsonParsing(String json) {
+        try {
+            ArrayList<Message> messages = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(json);
+
+            JSONArray messageArray = jsonObject.getJSONArray("messages");
+
+            for (int i = 0; i < messageArray.length(); i++) {
+                JSONObject messageObject = messageArray.getJSONObject(i);
+
+                String phone = messageObject.getString("phone");
+                String content = messageObject.getString("content");
+                String time = messageObject.getString("time");
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    Message message = new Message(content, phone, LocalDateTime.parse(time));
+                    messages.add(message);
+                }
+            }
+            return messages;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
